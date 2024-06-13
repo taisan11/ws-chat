@@ -19,6 +19,8 @@ const server = Bun.serve({
       }, // a message is received
       open(ws) {
         ws.subscribe('chat')
+        ws.publishText('chat',`入室:${ws.remoteAddress}`,true)
+        ws.sendText(`${ws.remoteAddress}`)
       }, // a socket is opened
       close(ws, code, message) {}, // a socket is closed
       drain(ws) {}, // the socket is ready to receive more data
